@@ -15,9 +15,6 @@ var gulp = require('gulp'), // сам gulp
     uncss = require('gulp-uncss'), // удаление неиспользуемых css
     nano = require('gulp-cssnano'); // 
 
-var reload = '.pipe(browserSync.reload({ stream: true }))';
-var bld = 'app/build';
-
 //  Сервер
 gulp.task('browser-sync', function() {
     browserSync.init({
@@ -28,45 +25,71 @@ gulp.task('browser-sync', function() {
 })
 
 // Наблюдение за изменениями
-gulp.task('watch', ['css', 'html', 'styl'], function() {
-    gulp.watch('bld/html/*.html', ['html'])
-    gulp.watch('bld/css/*.css', ['css'])
-    gulp.watch('bld/styl/*.styl', ['styl'])
-    gulp.watch('bld/js/*.js', ['scripts'])
+gulp.task('watch', ['html', 'styl', 'css'], function() {
+    gulp.watch('app/build/html/*.html', ['html'])
+    gulp.watch('app/build/css/*.css', ['css'])
+    gulp.watch('app/build/styl/*.styl', ['styl'])
+    gulp.watch('app/build/js/*.js', ['scripts'])
 });
 
 // html
 
 // Сборка в 1 файл
 gulp.task('html', function() {
-    return gulp.src('bld/html/index.html')
+    return gulp.src('app/build/index.html')
         .pipe(rigger())
         .pipe(gulp.dest('app'))
-    reload
+        .pipe(browserSync.reload({ stream: true }))
 });
 
 // Минификация готового файла
 gulp.task('minify', function() {
     return gulp.src('app/index.html')
         .pipe(htmlmin({ collapseWhitespace: true }))
-        .pipe(gulp.dest('dist'));
-    reload
+        .pipe(gulp.dest('dist'))
+        .pipe(browserSync.reload({ stream: true }))
 });
 
 // Css
 
 // Stylus
 gulp.task('styl', function() {
-    return gulp.src('bld/styl/*.styl')
+    return gulp.src('app/build/styl/*.styl')
         .pipe(styl({
             compress: true
         }))
-        .pipe(gulp.dest('bld/css'))
+        .pipe(gulp.dest('app/build/css'))
 })
+
+//  Соединение в 1 файл
+gulp.task('cssconcat', function() {
+    return gulp.src('app/build/css/*.css')
+        .pipe(concat('main.css'))
+        .pipe(uncss({
+            html: ['index.html', 'app/index.html']
+        }))
+        .pipe(nano())
+        .pipe(gulp.dest('app/css'));
+});
+
+//  Добавление префиксов
+gulp.task('css', function() {
+    var processors = [
+        autoprefixer({
+            browsers: ['last 9 versions']
+        }),
+        cssnext,
+        precss
+    ];
+    return gulp.src('app/css/main.css')
+        .pipe(postcss(processors))
+        .pipe(gulp.dest('dist/css'))
+        .pipe(browserSync.reload({ stream: true }))
+});
 
 // Js
 gulp.task('scripts', function() {
-    return gulp.src('bld/js/*.js')
+    return gulp.src('app/build/js/*.js')
         .pipe(uglify())
         .pipe(gulp.dest('app/js'));
 })
@@ -78,8 +101,13 @@ gulp.task('js-replace', function() {
         .pipe(gulp.dest('dist/js'));
 })
 
-
+gulp.task('image', function() {
+    gulp.src('app/build/img/*')
+        .pipe(gulp.dest('app/img'))
+        .pipe(gulp.dest('dist/img'))
+        .pipe(browserSync.reload({ stream: true }))
+});
 
 
 // таски по умолчанию
-gulp.task('default', ['html', 'minify', 'styl', 'scripts', 'js-replace', 'watch', 'browser-sync']);
+gulp.task('default', ['html', 'minify', 'styl', 'cssconcat', 'css', 'scripts', 'js-replace', 'image', 'watch', 'browser-sync']);
