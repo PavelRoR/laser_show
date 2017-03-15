@@ -1,4 +1,5 @@
 var gulp = require('gulp'), // сам gulp
+    pug = require('gulp-pug'),
     autoprefixer = require('autoprefixer'), // префиксы для css-стилей
     cssnext = require('cssnext'), // для autoprefixer
     precss = require('precss'), // для autoprefixer
@@ -25,30 +26,45 @@ gulp.task('browser-sync', function() {
 })
 
 // Наблюдение за изменениями
-gulp.task('watch', ['html', 'styl', 'css'], function() {
-    gulp.watch('app/build/html/*.html', ['html'])
+gulp.task('watch', ['pug', 'styl', 'css', 'scripts'], function() {
+    gulp.watch(['app/build/pug/*.pug',
+            'app/build/index.pug',
+        ], ['pug'])
+        // gulp.watch('app/build/html/*.html', ['html'])
     gulp.watch('app/build/css/*.css', ['css'])
-    gulp.watch('app/build/styl/*.styl', ['styl'])
+    gulp.watch(['app/build/styl/*.styl',
+        'app/build/styl/components/*.styl'
+    ], ['styl'])
     gulp.watch('app/build/js/*.js', ['scripts'])
 });
 
 // html
 
-// Сборка в 1 файл
-gulp.task('html', function() {
-    return gulp.src('app/build/index.html')
-        .pipe(rigger())
+// Pug
+gulp.task('pug', function buildHTML() {
+    return gulp.src('app/build/index.pug')
+        .pipe(pug())
         .pipe(gulp.dest('app'))
-        .pipe(browserSync.reload({ stream: true }))
-});
-
-// Минификация готового файла
-gulp.task('minify', function() {
-    return gulp.src('app/index.html')
-        .pipe(htmlmin({ collapseWhitespace: true }))
         .pipe(gulp.dest('dist'))
         .pipe(browserSync.reload({ stream: true }))
 });
+
+
+// Сборка в 1 файл
+// gulp.task('html', function() {
+//     return gulp.src('app/build/index.html')
+//         .pipe(rigger())
+//         .pipe(gulp.dest('app'))
+//         .pipe(browserSync.reload({ stream: true }))
+// });
+
+// Минификация готового файла
+// gulp.task('minify', function() {
+//     return gulp.src('app/index.html')
+//         .pipe(htmlmin({ collapseWhitespace: true }))
+//         .pipe(gulp.dest('dist'))
+//         .pipe(browserSync.reload({ stream: true }))
+// });
 
 // Css
 
@@ -58,19 +74,20 @@ gulp.task('styl', function() {
         .pipe(styl({
             compress: true
         }))
-        .pipe(gulp.dest('app/build/css'))
+        .pipe(gulp.dest('app/css'))
+        .pipe(browserSync.reload({ stream: true }))
 })
 
 //  Соединение в 1 файл
-gulp.task('cssconcat', function() {
-    return gulp.src('app/build/css/*.css')
-        .pipe(concat('main.css'))
-        .pipe(uncss({
-            html: ['index.html', 'app/index.html']
-        }))
-        .pipe(nano())
-        .pipe(gulp.dest('app/css'));
-});
+// gulp.task('cssconcat', function() {
+//     return gulp.src('app/build/css/*.css')
+//         .pipe(concat('main.css'))
+//         .pipe(uncss({
+//             html: ['index.html', 'app/index.html']
+//         }))
+//         .pipe(nano())
+//         .pipe(gulp.dest('app/css'));
+// });
 
 //  Добавление префиксов
 gulp.task('css', function() {
@@ -81,7 +98,7 @@ gulp.task('css', function() {
         cssnext,
         precss
     ];
-    return gulp.src('app/css/main.css')
+    return gulp.src('app/css/*.css')
         .pipe(postcss(processors))
         .pipe(gulp.dest('dist/css'))
         .pipe(browserSync.reload({ stream: true }))
@@ -91,7 +108,8 @@ gulp.task('css', function() {
 gulp.task('scripts', function() {
     return gulp.src('app/build/js/*.js')
         .pipe(uglify())
-        .pipe(gulp.dest('app/js'));
+        .pipe(gulp.dest('app/js'))
+        .pipe(browserSync.reload({ stream: true }))
 })
 
 // Js-перенос
@@ -110,4 +128,4 @@ gulp.task('image', function() {
 
 
 // таски по умолчанию
-gulp.task('default', ['html', 'minify', 'styl', 'cssconcat', 'css', 'scripts', 'js-replace', 'image', 'watch', 'browser-sync']);
+gulp.task('default', ['pug', 'styl', 'css', 'scripts', 'js-replace', 'image', 'watch', 'browser-sync']);

@@ -2,4 +2,112 @@
     margin 0
     padding 0
     box-sizing border-box
-    display flex
+    border-right 0
+    outline 0
+    font-size 100%
+
+article
+aside
+details
+main
+figcaption
+figure
+footer
+header
+hgroup
+menu
+nav
+section 
+    display block
+
+html 
+    height 100%
+    -webkit-text-size-adjust none
+    -ms-text-size-adjust none
+
+body 
+    margin 0px
+    padding 0px
+    font-family "Helvetica Neue",Helvetica,Arial,sans-serif
+    line-height 20px
+    background-color #ffffff
+    height 100%
+    position relative
+    font-size 14px
+    -webkit-font-smoothing antialiased
+    -moz-osx-font-smoothing grayscale
+
+input
+textarea 
+    color #333
+    outline none
+    border-radius 0
+    -moz-border-radius 0
+    -webkit-border-radius 0
+    -webkit-appearance none
+
+input[type="button"]
+input[type="submit"] 
+    cursor pointer
+
+button 
+    cursor pointer
+    -webkit-appearance none
+    outline none
+
+a 
+    color #000100
+    text-decoration none
+    outline none
+    -webkit-tap-highlight-color transparent
+    -webkit-tap-highlight-color transparent
+    letter-spacing 0.7px
+
+input[type=submit]
+input[type=button] 
+    -webkit-appearance none
+    outline none
+
+ul
+    list-style none
+
+.container
+    max-width 960px
+    margin 0 auto
+    overflow hidden
+
+.left
+    float left
+
+.right
+    float right
+
+.clf
+    clear both
+
+/*! Меню */
+@import "components/1_menu"
+/*!  Главный экран */
+@import "components/2_main_screen"
+/*! Цены */
+@import "components/3_prices"
+/*! Важно */
+@import "components/4_important"
+/*! Преимущества */
+@import "components/5_advantages"
+/*! Оборудование */
+@import "components/6_equipment"
+/*! Показатели */
+@import "components/7_indicators"
+/*! Заказать */
+@import "components/8_order"
+/*! Фото-галерея */
+@import "components/9_photos"
+/*! Видео */
+@import "components/10_videos"
+/*! Отзывы */
+@import "components/11_testimonials"
+/*! Нижняя форма */
+@import "components/12_down_form"
+/*! Подвал */
+@import "components/13_footer"
