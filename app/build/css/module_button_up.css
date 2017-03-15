@@ -1,0 +1,100 @@
+#button_up_wrap.button_up {
+    display: none;
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    font-size: 12px;
+    font-family: "Open Sans", Arial, sans-serif;
+    opacity: .9;
+    position: fixed;
+    cursor: pointer;
+    z-index: 100;
+}
+
+#button_up_wrap.button_up.left {
+    bottom: 50px;
+    left: 50px;
+}
+
+#button_up_wrap.button_up.right {
+    right: 50px;
+    bottom: 50px;
+}
+
+#button_up_wrap .scrollup {
+    width: 38%;
+    display: block;
+    margin: 15% auto 3%;
+}
+
+#button_up_wrap.button_up.lg {
+    width: 85px;
+    height: 85px;
+    font-size: 14px;
+}
+
+#button_up_wrap.button_up.sm {
+    width: 65px;
+    height: 65px;
+    font-size: 12px;
+}
+
+#button_up_wrap.button_up.md {
+    width: 75px;
+    height: 75px;
+    font-size: 13px;
+}
+
+#button_up_wrap.white {
+    border: 1px solid #E4EAEC;
+    background: #FFF;
+    color: #555;
+}
+
+#button_up_wrap.white .scrollup {
+    fill: #555;
+}
+
+#button_up_wrap.button_up.black {
+    background: #000;
+    color: #FFF;
+}
+
+#button_up_wrap.button_up.black .scrollup {
+    fill: #FFF;
+}
+
+#button_up_wrap.button_up.red {
+    background: #F96868;
+    color: #FFF;
+}
+
+#button_up_wrap.button_up.red .scrollup {
+    fill: #FFF;
+}
+
+#button_up_wrap.button_up.blue {
+    background: #62A8EA;
+    color: #FFF;
+}
+
+#button_up_wrap.button_up.blue .scrollup {
+    fill: #FFF;
+}
+
+#button_up_wrap.button_up.yellow {
+    background: #F2A654;
+    color: #FFF;
+}
+
+#button_up_wrap.button_up.yellow .scrollup {
+    fill: #FFF;
+}
+
+#button_up_wrap.button_up.square {
+    border-radius: 4px;
+}
+
+#button_up_wrap.button_up.circle {
+    border-radius: 50%;
+}
