@@ -1,0 +1,1 @@
+$(function(){$(".more").click(function(){$(".lightbox_bg").fadeIn(500)}),$(".close").click(function(){$(".lightbox_bg").fadeOut(500)})});

@@ -1,0 +1,1 @@
+$(function(){$("body").on("click",".more",function(t){t.preventDefault(),$("#"+$(this).attr("data-id")).fadeIn(500)}),$(".close").click(function(t){t.preventDefault(),$(".lightbox_bg").fadeOut(500)})});

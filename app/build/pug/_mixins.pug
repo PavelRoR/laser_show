@@ -1,0 +1,31 @@
+mixin list_u(...items)
+    ul&attributes(attributes)
+            each item in items
+                li= item
+
+mixin l_box_1(id, src, alt, h4, ...its)
+    .lightbox_bg(id= id)
+                    .lightbox
+                        .left
+                            img(src= src, alt= alt)
+                        .left
+                            h4= h4 
+                            +list_u(...its)
+                        .clf
+                        .l_box_form
+                            include form
+                    include close
+
+mixin l_box_2(id, src, alt, h4, p, ...its2)
+    .lightbox_bg(id= id)
+                    .lightbox
+                        .left
+                            img(src= src, alt= alt)
+                        .left
+                            h4= h4 
+                            +list_u(...its2)
+                        .clf
+                        p= p
+                        .l_box_form
+                            include form
+                    include close
