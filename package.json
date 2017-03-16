@@ -20,6 +20,7 @@
     "gulp-rigger": "^0.5.8",
     "gulp-uglify": "^2.1.0",
     "gulp-uncss": "^1.0.6",
+    "gulp-util": "^3.0.8",
     "html": "^1.0.0"
   }
 }

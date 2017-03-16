@@ -1,5 +1,6 @@
 var gulp = require('gulp'), // сам gulp
-    pug = require('gulp-pug'),
+    pug = require('gulp-pug'), // Сборка pug
+    gutil = require('gulp-util'), // Вывод ошибок
     autoprefixer = require('autoprefixer'), // префиксы для css-стилей
     cssnext = require('cssnext'), // для autoprefixer
     precss = require('precss'), // для autoprefixer
@@ -14,6 +15,7 @@ var gulp = require('gulp'), // сам gulp
     rigger = require('gulp-rigger'), // вкладывать части в один файл
     htmlmin = require('gulp-htmlmin'), // минификатор html
     uncss = require('gulp-uncss'), // удаление неиспользуемых css
+    plumber = require("gulp-plumber"), //предохранитель для остановки гальпа
     nano = require('gulp-cssnano'); // 
 
 //  Сервер
@@ -22,7 +24,7 @@ gulp.task('browser-sync', function() {
         server: {
             baseDir: "app"
         }
-    });
+    })
 })
 
 // Наблюдение за изменениями
@@ -36,6 +38,8 @@ gulp.task('watch', ['pug', 'styl', 'css', 'scripts'], function() {
         'app/build/styl/components/*.styl'
     ], ['styl'])
     gulp.watch('app/build/js/*.js', ['scripts'])
+        .pipe(plumber())
+        .on('error', gutil.log)
 });
 
 // html
@@ -43,10 +47,12 @@ gulp.task('watch', ['pug', 'styl', 'css', 'scripts'], function() {
 // Pug
 gulp.task('pug', function buildHTML() {
     return gulp.src('app/build/index.pug')
+        .pipe(plumber())
         .pipe(pug())
         .pipe(gulp.dest('app'))
         .pipe(gulp.dest('dist'))
         .pipe(browserSync.reload({ stream: true }))
+        .on('error', gutil.log)
 });
 
 
@@ -71,11 +77,13 @@ gulp.task('pug', function buildHTML() {
 // Stylus
 gulp.task('styl', function() {
     return gulp.src('app/build/styl/*.styl')
+        .pipe(plumber())
         .pipe(styl({
             compress: true
         }))
         .pipe(gulp.dest('app/css'))
         .pipe(browserSync.reload({ stream: true }))
+        .on('error', gutil.log)
 })
 
 //  Соединение в 1 файл
@@ -99,31 +107,39 @@ gulp.task('css', function() {
         precss
     ];
     return gulp.src('app/css/*.css')
+        .pipe(plumber())
         .pipe(postcss(processors))
         .pipe(gulp.dest('dist/css'))
         .pipe(browserSync.reload({ stream: true }))
+        .on('error', gutil.log)
 });
 
 // Js
 gulp.task('scripts', function() {
     return gulp.src('app/build/js/*.js')
+        .pipe(plumber())
         .pipe(uglify())
         .pipe(gulp.dest('app/js'))
         .pipe(browserSync.reload({ stream: true }))
+        .on('error', gutil.log)
 })
 
 // Js-перенос
 gulp.task('js-replace', function() {
     return gulp.src('app/js/*.js')
         .pipe(uglify())
-        .pipe(gulp.dest('dist/js'));
+        .pipe(plumber())
+        .pipe(gulp.dest('dist/js'))
+        .on('error', gutil.log)
 })
 
 gulp.task('image', function() {
     gulp.src('app/build/img/*')
+        .pipe(plumber())
         .pipe(gulp.dest('app/img'))
         .pipe(gulp.dest('dist/img'))
         .pipe(browserSync.reload({ stream: true }))
+        .on('error', gutil.log)
 });
 
 
