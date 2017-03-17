@@ -29,3 +29,11 @@ mixin l_box_2(id, src, alt, h4, p, ...its2)
                         .l_box_form
                             include form
                     include close
+
+mixin pic_l_box(srcMin, alt, id,  src)
+    a(href="javascript:void(0);")(data-id= id class="pic_trigger")
+        img(src= srcMin, alt= alt)
+        .lightbox_bg(id= id)
+            .lightbox_pic
+                img(src= src, alt= alt)
+            include close
