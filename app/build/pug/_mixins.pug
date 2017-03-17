@@ -36,3 +36,13 @@ mixin pic_l_box(srcMin, alt, id,  src)
         .lightbox_pic
             img(src= src, alt= alt)
         include close
+
+mixin testims(src, alt, h4, href, pTown, p)
+            .t_row
+                img(src= src, alt= alt)
+                h4= h4
+                a(href= href, target="_blank")= href
+                p.town= pTown
+                .clf
+            .t_row
+                p.p_testim= p
