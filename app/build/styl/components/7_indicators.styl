@@ -1,0 +1,62 @@
+.indicators
+    background-image url('../img/indicators.jpeg')
+    background-repeat no-repeat
+    background-size cover
+    background-attachment fixed
+    text-align center
+    position relative
+    z-index 99
+    padding-bottom 90px
+    &:after
+        content ''
+        width 100%
+        height 100%
+        position absolute
+        top 0
+        left 0
+        background-color #000
+        opacity .65
+        z-index -1
+    h3
+        font-family pt serif caption
+        font-size 42px
+        font-weight normal
+        font-style italic
+        text-align center
+        line-height 1
+        color #fff
+        padding 60px 0 35px
+        position relative
+        &:before
+        &:after
+            position absolute
+            content ''
+            width 13%
+            bottom 42px
+            height 1px
+            background-color #fff
+            opacity .45
+        &:before
+            left 30px
+        &:after
+            right 30px
+.col_25
+    width 22.7%
+    float left
+    &:first-child
+    &:nth-child(2)
+    &:nth-child(3)
+        margin-right 27px
+    &:last-child
+        float right
+    img
+        margin-bottom 25px
+    h4
+        color #FFF0F5
+        font-size 56px
+        font-weight normal
+        margin-bottom 30px
+    p
+        color #FFF0F5
+        font-size 19px
+        line-height 1.4
