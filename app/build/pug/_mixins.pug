@@ -31,11 +31,14 @@ mixin l_box_2(id, src, alt, h4, p, ...its2)
                     include close
 
 mixin pic_l_box(srcMin, alt, id,  src)
-    img(src= srcMin, alt= alt)(data-id= id class="pic_trigger")
+    .pic_trigger(data-id= id)
+        img(src= srcMin, alt= alt)
+        .zoom
     .lightbox_bg(id= id)
         .lightbox_pic
             img(src= src, alt= alt)
-        include close
+        .pic_close
+            include close
 
 mixin testims(src, alt, h4, href, pTown, p)
             .t_row
