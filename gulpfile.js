@@ -38,8 +38,6 @@ gulp.task('watch', ['pug', 'styl', 'css', 'scripts'], function() {
         'app/build/styl/components/*.styl'
     ], ['styl'])
     gulp.watch('app/build/js/*.js', ['scripts'])
-        .pipe(plumber())
-        .on('error', gutil.log)
 });
 
 // html
