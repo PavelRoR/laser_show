@@ -1,5 +1,6 @@
 <?php  
-$strTo = "remontufa24@yandex.ru";
+// $strTo = "remontufa24@yandex.ru";
+$strTo = "pavelvp2182@yandex.ru";
 $strSubject = "Заявка с сайта 'Лазерное шоу'";
 $strMessage = nl2br($_POST["txtDescription"]);  
 $info = array();
@@ -42,26 +43,25 @@ else
 echo "Возникла ошибка! Данные не получены";  
 }  
 ini_set('short_open_tag', 'On');
-header('Refresh: 3; URL=http://www.zvukufa.ru/');
+header('Refresh: 5; URL=http://www.zvukufa.ru/version_2');
 ?>
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="ru-RU">
 
     <head>
         <meta charset="UTF-8">
         <title>Спасибо</title>
-        <link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="stylesheet" href="css/styles.css" />
     </head>
 
     <body>
-        <section  id="container-thanks" class="main special">
+        <section  id="container-thanks">
             <div class="container">
                 <div class="order">
-                    <p>Мы получили Ваш телефона и скоро свяжемся с Вами!</p>
+                    <p>Мы получили Ваш номер телефона и скоро свяжемся с Вами!</p>
                     <p>Хорошего Вам дня!</p>
                 </div>
             </div>
-
         </section>
     </body>
 

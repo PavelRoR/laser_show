@@ -40,11 +40,10 @@ mixin pic_l_box(srcMin, alt, id,  src)
         .pic_close
             include close
 
-mixin testims(src, alt, h4, href, pTown, p)
+mixin testims(src, alt, h4, pTown, p)
             .t_row
                 img(src= src, alt= alt)
                 h4= h4
-                a(href= href, target="_blank")= href
                 p.town= pTown
                 .clf
             .t_row
