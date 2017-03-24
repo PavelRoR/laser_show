@@ -131,15 +131,15 @@ gulp.task('js-replace', function() {
         .on('error', gutil.log)
 })
 
-gulp.task('image', function() {
-    gulp.src('app/build/img/*')
-        .pipe(plumber())
-        .pipe(gulp.dest('app/img'))
-        .pipe(gulp.dest('dist/img'))
-        .pipe(browserSync.reload({ stream: true }))
-        .on('error', gutil.log)
-});
+// gulp.task('image', function() {
+//     gulp.src('app/build/img/*')
+//         .pipe(plumber())
+//         .pipe(gulp.dest('app/img'))
+//         .pipe(gulp.dest('dist/img'))
+//         .pipe(browserSync.reload({ stream: true }))
+//         .on('error', gutil.log)
+// });
 
 
 // таски по умолчанию
-gulp.task('default', ['pug', 'styl', 'css', 'scripts', 'js-replace', 'image', 'watch', 'browser-sync']);
+gulp.task('default', ['pug', 'styl', 'css', 'scripts', 'js-replace', 'watch', 'browser-sync']);

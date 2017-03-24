@@ -1,5 +1,5 @@
 <?php  
-$strTo = "remontufa24@yandex.ru";
+$strTo = "remontufa247@gmail.com";
 $strSubject = "Заявка с сайта 'Лазерное шоу'";
 $strMessage = nl2br($_POST["txtDescription"]);  
 $info = array();
