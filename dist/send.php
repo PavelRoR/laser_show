@@ -1,6 +1,5 @@
-<?php  
-// $strTo = "remontufa24@yandex.ru";
-$strTo = "pavelvp2182@yandex.ru";
+﻿<?php  
+$strTo = "remontufa247@gmail.com";
 $strSubject = "Заявка с сайта 'Лазерное шоу'";
 $strMessage = nl2br($_POST["txtDescription"]);  
 $info = array();
@@ -43,7 +42,7 @@ else
 echo "Возникла ошибка! Данные не получены";  
 }  
 ini_set('short_open_tag', 'On');
-header('Refresh: 5; URL=http://www.zvukufa.ru/version_2');
+header('Refresh: 5; URL=http://www.zvukufa.ru/');
 ?>
     <!DOCTYPE html>
     <html lang="ru-RU">
